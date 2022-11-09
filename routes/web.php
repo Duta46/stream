@@ -25,6 +25,9 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', [DashboardController::class, 'index']);
 
-    Route::get('/movie/create', [MovieController::class, 'create']);
+    Route::group(['prefix' => 'movie'], function(){
+        Route::get('/create', [MovieController::class, 'create'])->name('admin.movie.create');
+        Route::post('/store', [MovieController::class, 'store'])->name('admin.movie.store');
+    });    
 });
 

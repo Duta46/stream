@@ -23,7 +23,7 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-      <form enctype="multipart/form-data" method="POST" action="">
+      <form enctype="multipart/form-data" method="POST" action="{{ route('admin.movie.store') }}">
         @csrf
         <div class="card-body">
           <div class="form-group">
