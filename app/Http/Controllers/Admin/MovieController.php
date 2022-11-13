@@ -13,10 +13,12 @@ class MovieController extends Controller
     }    
 
     public function store(Request $request){
+
+        $data = $request->except('_token');
         $request->validate([
             'title' => 'required|string',
-            'small_thubnail' => 'required|image|mimes:jpeg,jpg,png',
-            'large_thubnail' => 'required|image|mimes:jpeg,jpg,png',
+            'small_thumbnail' => 'required|image|mimes:jpeg,jpg,png',
+            'large_thumbnail' => 'required|image|mimes:jpeg,jpg,png',
             'trailer' => 'required|url',
             'movie' => 'required|url',
             'casts' => 'required|string',
@@ -28,5 +30,21 @@ class MovieController extends Controller
             'duration' => 'required|string',
             'featured' => 'required',
         ]);
+
+        $smallThumbnail = $request->small_thumbnail;
+        $largeThumbnail = $request->large_thumbnail;
+
+        $originalSmallThumbnailName = $smallThumbnail->getClientOriginalName();
+        $originalLargeThumbnailName = $largeThumbnail->getClientOriginalName();
+
+        //upload file nama
+        //upload file
+        // $smallThumbnail->storeAs('public/thumbnail', $originalSmallThumbnailName);
+        // $largeThumbnail->storeAs('public/thumbnail', $originalLargeThumbnailName);
+
+        $data['small_thumbnail'] = $originalSmallThumbnailName;
+        $data['large_thumbnail'] = $originalLargeThumbnailName;
+
+        echo "<pre>".print_r($data, 1)."</pre>";
     }
 }
