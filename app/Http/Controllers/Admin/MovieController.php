@@ -39,12 +39,16 @@ class MovieController extends Controller
 
         //upload file nama
         //upload file
-        // $smallThumbnail->storeAs('public/thumbnail', $originalSmallThumbnailName);
-        // $largeThumbnail->storeAs('public/thumbnail', $originalLargeThumbnailName);
+        $smallThumbnail->storeAs('public/thumbnail', $originalSmallThumbnailName);
+        $largeThumbnail->storeAs('public/thumbnail', $originalLargeThumbnailName);
 
         $data['small_thumbnail'] = $originalSmallThumbnailName;
         $data['large_thumbnail'] = $originalLargeThumbnailName;
 
-        echo "<pre>".print_r($data, 1)."</pre>";
+        // echo "<pre>".print_r($data, 1)."</pre>";
+
+        Movie::create($data); //menyimpan pada database
+
+        return redirect()->route('admin.movie.create');
     }
 }

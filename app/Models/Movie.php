@@ -32,6 +32,7 @@ class Movie extends Model
         'casts',
         'categories',
         'small_thumbnail',
+        'large_thumbnail',
         'release_date',
         'about',
         'short_about',
