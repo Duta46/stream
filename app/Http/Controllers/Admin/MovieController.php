@@ -5,12 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Movie;
+use Illuminate\Support\Arr;
 
 class MovieController extends Controller
 {
+        //menampilkan data pada database
+    public function index(){
+        $movies = Movie::all();
+
+        return view('admin.movies', ['movies' => $movies]);
+    }
+
     public function create(){
         return view('admin.movie-create');
-    }    
+    }
+    
+    public function edit($id){
+        return view('admin.movie-edit');
+    }
 
     public function store(Request $request){
 
@@ -34,8 +46,8 @@ class MovieController extends Controller
         $smallThumbnail = $request->small_thumbnail;
         $largeThumbnail = $request->large_thumbnail;
 
-        $originalSmallThumbnailName = $smallThumbnail->getClientOriginalName();
-        $originalLargeThumbnailName = $largeThumbnail->getClientOriginalName();
+        $originalSmallThumbnailName =  Arr::random(10).$smallThumbnail->getClientOriginalName();
+        $originalLargeThumbnailName = Arr::random(10).$largeThumbnail->getClientOriginalName();
 
         //upload file nama
         //upload file
