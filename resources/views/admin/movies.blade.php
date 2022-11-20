@@ -52,15 +52,14 @@
                     <td>{{ $movie->casts }}</td>
                     <td>
                       <a href="{{ route('admin.movie.edit', $movie->id) }}" class="btn btn-secondary bg-success">
-                        <i class="fas fa-edit"></i>
-                      </a>
-                      {{-- <form method="post" action="{{ route('admin.movie.destroy', $movie->id) }}">
+                        <i class="fas fa-edit"></i></a> 
+                      <form method="post" action="{{ route('admin.movie.destroy', $movie->id) }}">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-danger">
                           <i class="fas fa-trash-alt"></i>
                         </button>
-                      </form> --}}
+                      </form>
                     </td>
                   </tr>
                 @endforeach
