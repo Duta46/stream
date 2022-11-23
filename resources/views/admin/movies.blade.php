@@ -13,7 +13,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-12">
-            <a href="{{ route('admin.movie.create') }}" class="btn btn-primary text-white">Create Movie</a>
+            <a href="{{ route('admin.movie.create') }}" class="btn btn-primary text-white">Tambah Data</a>
           </div>
         </div>
         

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\MovieController;
+use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,10 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/admin/dashboard', [DashboardController::class, 'index']);
+Route::get('/admin/login', [LoginController::class, 'index'])->name('admin.login');
+Route::post('/admin/login', [LoginController::class, 'authenticate'])->name('admin.login.auth');
 
 Route::group(['prefix' => 'admin'], function(){
-    Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::group(['prefix' => 'movie'], function(){
         Route::get('/', [MovieController::class, 'index'])->name('admin.movie');

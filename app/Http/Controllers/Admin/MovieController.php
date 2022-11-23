@@ -64,7 +64,7 @@ class MovieController extends Controller
 
         Movie::create($data); //menyimpan pada database
 
-        return redirect()->route('admin.movie');
+        return redirect()->route('admin.movie')->with('success', 'Berhasil Tambah Data Movie');
     }
 
     public function update(Request $request, $id){
@@ -111,7 +111,7 @@ class MovieController extends Controller
         }
         $movie->update($data);
 
-        return redirect()->route('admin.movie');
+        return redirect()->route('admin.movie')->with('success', 'Berhasil Merubah Data Movie');
     }
 
     public function destroy($id){
