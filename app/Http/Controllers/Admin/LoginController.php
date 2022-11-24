@@ -21,6 +21,8 @@ class LoginController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+
+        // dd($credentials);
         $credentials['role'] = 'admin';
 
         if (Auth::attempt($credentials)) {
