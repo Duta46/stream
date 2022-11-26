@@ -19,4 +19,14 @@ class Transaction extends Model
         'transaction_code',
         'status'
     ];
+
+    //eager loads : mengambil data dari tabel lain
+
+    public function package(){
+        return $this->belongsTo(Package::class); //foreign key dan primary key
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class); //foreign key dan primary key
+    }
 }
