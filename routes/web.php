@@ -9,6 +9,7 @@ use App\Http\Middleware\AdminAuthenticate;
 
 use App\Http\Controllers\Member\RegisterController;
 use App\Http\Controllers\Member\LoginController as MemberLoginController;
+use App\Http\Controllers\Member\PricingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,16 @@ Route::view('/', 'index');
 Route::get('/register', [RegisterController::class, 'index'])->name('member.register');
 Route::post('/register', [RegisterController::class, 'store'])->name('member.register.store');
 
-Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login'); 
+Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');
+Route::post('/login', [MemberLoginController::class, 'auth'])->name('member.login.auth');
+
+Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
+
+Route::group(['prefix' => 'member', 'middleware' => ['auth']], function(){
+Route::get('test', function(){
+    return 'Kamu sudah berhasil login';
+});
+});
 
 //admin route
 Route::get('/admin/login', [LoginController::class, 'index'])->name('admin.login');
