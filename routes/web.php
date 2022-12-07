@@ -10,6 +10,8 @@ use App\Http\Middleware\AdminAuthenticate;
 use App\Http\Controllers\Member\RegisterController;
 use App\Http\Controllers\Member\LoginController as MemberLoginController;
 use App\Http\Controllers\Member\PricingController;
+use App\Http\Controllers\Member\DashboardController as MemberDashboardController;
+use App\Http\Controllers\Member\MovieController as MemberMovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +36,11 @@ Route::post('/login', [MemberLoginController::class, 'auth'])->name('member.logi
 Route::get('/pricing', [PricingController::class, 'index'])->name('pricing');
 
 Route::group(['prefix' => 'member', 'middleware' => ['auth']], function(){
-Route::get('test', function(){
-    return 'Kamu sudah berhasil login';
-});
+Route::get('/', [MemberDashboardController::class, 'index'])->name('member.dashboard');
+
+Route::get('movie/{id}', [MemberMovieController::class, 'show'])->name('member.movie.detail');
+
+Route::get('/movie/{id}/watch', [MemberMovieController::class, 'watch'])->name('member.movie.watch');
 });
 
 //admin route
