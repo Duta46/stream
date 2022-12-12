@@ -20,6 +20,8 @@ class LoginController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+        $credentials['role'] = 'member';
+
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
