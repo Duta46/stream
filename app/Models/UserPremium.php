@@ -20,4 +20,8 @@ class UserPremium extends Model
         'end_of_subscription'
     ];
 
+    public function package(){
+        return $this->belongsTo(Package::class);
+    }
+
 }
