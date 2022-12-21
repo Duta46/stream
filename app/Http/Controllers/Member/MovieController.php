@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserPremium;
 use Illuminate\Support\Carbon;
+use App\Models\Movie;
 
 class MovieController extends Controller
 {
-    public function show($id){
-        return view('member.movie-detail');
+    public function show($id)
+    {
+        $movie = Movie::find($id);
+
+        return view('member.movie-detail', ['movie'=> $movie]);
     }
 
     public function watch($id){
@@ -25,7 +29,8 @@ class MovieController extends Controller
             $isValidSubscription = $date->greaterThan(now());
 
             if($isValidSubscription){
-                return view('member.movie-watching');
+                $movie = Movie::find($id);
+                return view('member.movie-watching', ['movie' => $movie]);
             }
              
         }

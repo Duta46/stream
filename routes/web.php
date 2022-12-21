@@ -45,6 +45,8 @@ Route::view('/payment-finish', 'member.payment-finish')->name('member.payment.fi
 Route::group(['prefix' => 'member', 'middleware' => ['auth']], function(){
     Route::get('/', [MemberDashboardController::class, 'index'])->name('member.dashboard');
 
+    Route::get('/logout', [MemberLoginController::class, 'logout'])->name('member.login.logout');
+
     Route::get('movie/{id}', [MemberMovieController::class, 'show'])->name('member.movie.detail');
 
     Route::get('/movie/{id}/watch', [MemberMovieController::class, 'watch'])->name('member.movie.watch');
